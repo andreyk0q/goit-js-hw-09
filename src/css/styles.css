@@ -16,3 +16,190 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+.hw-links {
+  list-style: none;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.hw-links a {
+  font-weight: 600;
+  color: #2c2c2c;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #f1f1f1;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.hw-links a:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.gallery-link {
+  overflow: hidden;
+  border-radius: 0;
+  transition: box-shadow 250ms ease;
+}
+
+.gallery-image {
+  transition: transform 250ms ease;
+}
+
+.gallery-link:hover .gallery-image {
+  transform: scale(1.03);
+}
+
+.gallery-link:hover {
+  box-shadow: 0 4px 10px rgba(46, 47, 66, 0.15);
+}
+
+/* ====== SimpleLightbox custom ====== */
+.sl-overlay {
+  background: #2e2f42 !important;
+  opacity: 0.8 !important;
+}
+
+.sl-wrapper .sl-image img {
+  border-radius: 0;
+}
+
+.sl-wrapper .sl-close,
+.sl-wrapper .sl-counter,
+.sl-wrapper .sl-navigation button {
+  color: #fff !important;
+}
+
+.sl-wrapper .sl-navigation button {
+  opacity: 1;
+}
+
+/* ====== Gallery layout (Figma-like) ====== */
+.gallery {
+  list-style: none;
+  padding: 0;
+  margin: 24px auto 0;
+
+  width: 1128px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.gallery-item {
+  flex: 0 0 360px;
+  /* фіксована ширина */
+  height: 200px;
+}
+
+.gallery-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Feedback form  */
+.feedback-form {
+  width: 408px;
+  padding: 24px;
+  margin: 24px auto 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.feedback-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  width: 360px;
+
+  padding: 8px 16px;
+
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+
+  border: 1px solid #808080;
+  border-radius: 4px;
+  outline: transparent;
+
+  transition: border-color 250ms ease;
+}
+
+.feedback-form input {
+  height: 40px;
+}
+
+.feedback-form textarea {
+  height: 80px;
+  resize: none;
+}
+
+.feedback-form input:hover,
+.feedback-form textarea:hover {
+  border-color: #000000;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  border-color: #2e2f42;
+}
+
+.feedback-form button {
+  width: 95px;
+  height: 40px;
+
+  padding: 8px 16px;
+
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+
+  color: #ffffff;
+  background: #4e75ff;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: background-color 250ms ease;
+}
+
+.feedback-form button:hover {
+  background: #6c8cff;
+}
