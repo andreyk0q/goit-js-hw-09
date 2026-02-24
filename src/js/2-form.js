@@ -1,56 +1,57 @@
 const STORAGE_KEY = "feedback-form-state";
-
 const formEl = document.querySelector(".feedback-form");
 
-let formData = {
-  email: "",
-  message: "",
-};
+let formData = { email: "", message: "" };
 
-// --- 1) Підставляємо дані зі сховища при завантаженні ---
-const savedData = localStorage.getItem(STORAGE_KEY);
+const saved = localStorage.getItem(STORAGE_KEY);
 
-if (savedData) {
+if (saved) {
   try {
-    const parsedData = JSON.parse(savedData);
+    const parsed = JSON.parse(saved);
 
-    formData = {
-      email: parsedData.email ?? "",
-      message: parsedData.message ?? "",
-    };
+    formData.email = parsed.email ?? "";
+    formData.message = parsed.message ?? "";
 
     formEl.elements.email.value = formData.email;
     formEl.elements.message.value = formData.message;
   } catch (error) {
-    // Якщо в LS зламана JSON-строка — очищаємо її, щоб не ламало сторінку
     localStorage.removeItem(STORAGE_KEY);
   }
 }
 
-// --- 2) Делегування input: оновлюємо formData і пишемо в localStorage ---
+function saveToStorage() {
+  const trimmedData = {
+    email: formData.email.trim(),
+    message: formData.message.trim(),
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmedData));
+}
+
 formEl.addEventListener("input", (event) => {
   const { name, value } = event.target;
 
   if (name !== "email" && name !== "message") return;
 
-  formData[name] = value.trim();
+  formData[name] = value;
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+  saveToStorage();
 });
 
-// --- 3) Сабміт: валідація, лог, очищення ---
 formEl.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  if (!formData.email || !formData.message) {
+  const emailTrimmed = formData.email.trim();
+  const messageTrimmed = formData.message.trim();
+
+  if (!emailTrimmed || !messageTrimmed) {
     alert("Fill please all fields");
     return;
   }
 
-  console.log(formData);
+  console.log({ email: formData.email, message: formData.message });
 
   localStorage.removeItem(STORAGE_KEY);
-
   formData = { email: "", message: "" };
   formEl.reset();
 });
